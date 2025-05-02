@@ -56,7 +56,7 @@ app.get('/api/shorturl/:short',(req,res)=>{
     res.redirect(original_url)
   }
   else{
-    res.json({error:"invalid url original"})
+    res.json({error:"invalid url"})
   }
 })
 app.listen(port, function() {
