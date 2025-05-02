@@ -38,7 +38,7 @@ app.post('/api/shorturl',(req,res)=>{
     }
     const shorturl = id++;
     urls[shorturl] = url; // generate unique numbers for each url
-    console.log('Stored URLs:', urls);
+    // console.log('Stored URLs:', urls);
     res.json({
       "original_url": url,
       "short_url": shorturl
@@ -47,16 +47,15 @@ app.post('/api/shorturl',(req,res)=>{
 })
 
 app.get('/api/shorturl/:short',(req,res)=>{
-  const shorturl = req.params.short;
+  const shorturl = Number(req.params.short);
   const original_url = urls[shorturl]
-  console.log(original_url,urls,'hfoewhaofheos',req.params.short,urls[shorturl]);
-  
+
   if(original_url){
 
     res.redirect(original_url)
   }
   else{
-    res.json({error:"invalid url"})
+    return res.json({error:"invalid url"})
   }
 })
 app.listen(port, function() {
